@@ -1,7 +1,7 @@
 // Set cell size and border size
 export const cellSize = 100;
 export const borderWidth = 5;
-export const cellPadding = 5; // Set cell padding size
+export const cellPadding = 50; // Set cell padding size
 
 // LetterCell class to represent a letter cell in the grid
 export default class LetterCell extends Phaser.GameObjects.Graphics {
