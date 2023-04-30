@@ -5,15 +5,15 @@ export const cellPadding = 50; // Set cell padding size
 
 // LetterCell class to represent a letter cell in the grid
 export default class LetterCell extends Phaser.GameObjects.Graphics {
-  constructor(scene: Phaser.Scene, x: number, y: number, size: number, borderWidth:number , letter: string) {
+  constructor(scene: Phaser.Scene, x: number, y: number, letter: string) {
     super(scene);
 
     this.fillStyle(0xdf7c00, 1); // Set fill color to white
-    this.fillRect(x, y, size, size); // Draw filled-in square
+    this.fillRect(x, y, cellSize, cellSize); // Draw filled-in square
     this.lineStyle(borderWidth, 0x000000, 1); // Set border color to black
-    this.strokeRect(x, y, size, size); // Draw border around the square
+    this.strokeRect(x, y, cellSize, cellSize); // Draw border around the square
     
-    this.setInteractive(new Phaser.Geom.Rectangle(x, y, size, size),Phaser.Geom.Rectangle.Contains)
+    this.setInteractive(new Phaser.Geom.Rectangle(x, y, cellSize, cellSize),Phaser.Geom.Rectangle.Contains)
       .setName(letter) // Set the letter as the name of the graphics
       .on('pointerup', this.onLetterClicked); // Add click event listener
       

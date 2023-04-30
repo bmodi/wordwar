@@ -27,7 +27,7 @@ export default class WordWarScene extends Phaser.Scene {
         const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
 
         // Create a new LetterCell instance
-        const letterCell = new LetterCell(this, x, y, lc.cellSize, lc.borderWidth, randomLetter);
+        const letterCell = new LetterCell(this, x, y, randomLetter);
       }
     }
 
