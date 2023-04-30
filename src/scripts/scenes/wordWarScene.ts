@@ -1,10 +1,10 @@
 import LetterCell from '../objects/letterCell'
 import * as lc from '../objects/letterCell'
 
-// LetterGrid class to represent the 4x4 letter grid game
-export default class LetterGrid extends Phaser.Scene {
+// WordWarScene class to represent the 4x4 letter grid game
+export default class WordWarScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'LetterGrid' });
+    super({ key: 'WordWarScene' });
   }
 
   create() {
