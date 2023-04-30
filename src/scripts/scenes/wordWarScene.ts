@@ -1,4 +1,5 @@
-import LetterCell from '../objects/letterCell'
+import LetterGrid from '../objects/letterGrid'
+import LetterRack from '../objects/letterRack'
 import * as lc from '../objects/letterCell'
 
 // WordWarScene class to represent the 4x4 letter grid game
@@ -8,32 +9,15 @@ export default class WordWarScene extends Phaser.Scene {
   }
 
   create() {
-    // Calculate total width and height of the grid
-    const gridWidth = 4 * (lc.cellSize + lc.borderWidth) - lc.borderWidth + 3 * lc.cellPadding; // Add padding between cells
-    const gridHeight = 4 * (lc.cellSize + lc.borderWidth) - lc.borderWidth + 3 * lc.cellPadding; // Add padding between cells
+    const centerX = this.cameras.main.width / 2;
+    const centerY = this.cameras.main.height / 2;
+    const width = 4 * (lc.cellSize + lc.borderWidth) - lc.borderWidth + 3 * lc.cellPadding; // Add padding between cells
+    const height = 4 * (lc.cellSize + lc.borderWidth) - lc.borderWidth + 3 * lc.cellPadding; // Add padding between cells
 
-    // Calculate starting position of the grid to center it in the game canvas
-    const startX = (this.cameras.main.width - gridWidth) / 2;
-    const startY = (this.cameras.main.height - gridHeight) / 2;
-    
-    // Loop through rows and columns to create the grid
-    for (let row = 0; row < 4; row++) {
-      for (let col = 0; col < 4; col++) {
-        // Calculate the position of the letter cell
-        const x = startX + lc.borderWidth + col * (lc.cellSize + lc.borderWidth + lc.cellPadding); // Add padding between cells
-        const y = startY + lc.borderWidth + row * (lc.cellSize + lc.borderWidth + lc.cellPadding); // Add padding between cells
+    const letterGrid = new LetterGrid(this);
+    letterGrid.create();
 
-        const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generate a random char code between 65 (A) and 90 (Z)
-        const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
+    const letterRack = new LetterRack(this, centerX - width / 2, centerY + height / 2 + 50, width, lc.cellSize);
 
-        // Create a new LetterCell instance
-        const letterCell = new LetterCell(this, x, y, randomLetter);
-      }
-    }
-
-    // Draw a box around the entire grid
-    const graphics = this.add.graphics();
-    graphics.lineStyle(5, 0xffffff);
-    graphics.strokeRect(startX - lc.cellPadding / 2, startY - lc.cellPadding / 2, gridWidth + lc.cellPadding, gridHeight + lc.cellPadding);
   }
 }
