@@ -34,6 +34,7 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
         // Draw a box around the entire grid
         const graphics = this.scene.add.graphics();
         graphics.lineStyle(5, 0xffffff);
-        graphics.strokeRect(startX - lc.cellPadding / 2, startY - lc.cellPadding / 2, gridWidth + lc.cellPadding, gridHeight + lc.cellPadding);
+        graphics.strokeRect(startX - lc.cellPadding / 2 - lc.borderWidth, startY - lc.cellPadding / 2 - lc.borderWidth,
+            gridWidth + lc.cellPadding*2, gridHeight + lc.cellPadding*2);
     }
 }  
