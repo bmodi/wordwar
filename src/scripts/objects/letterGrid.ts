@@ -1,16 +1,12 @@
 import LetterCell from '../objects/letterCell'
 
 export default class LetterGrid extends Phaser.GameObjects.Graphics {
+
+  static gridWidth: number = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
+  static gridHeight: number = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
+
   constructor(scene: Phaser.Scene) {
     super(scene);
-  }
-
-  private getGridWidth(): number {
-    return 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
-  }
-
-  private getGridHeight(): number {
-    return 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
   }
 
   private getXPosition(col: number): number {
@@ -22,11 +18,11 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
   }
 
   private getStartX() {
-    return (this.scene.cameras.main.width - this.getGridWidth()) / 2;
+    return (this.scene.cameras.main.width - LetterGrid.gridWidth) / 2;
   }
 
   private getStartY() {
-    return (this.scene.cameras.main.height - this.getGridHeight()) / 2;
+    return (this.scene.cameras.main.height - LetterGrid.gridHeight) / 2;
   }
 
   create() {
@@ -51,8 +47,8 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
     graphics.strokeRect(
       this.getStartX() - LetterCell.cellPadding / 2 - LetterCell.borderWidth,
       this.getStartY() - LetterCell.cellPadding / 2 - LetterCell.borderWidth,
-      this.getGridWidth() + LetterCell.cellPadding * 2,
-      this.getGridHeight() + LetterCell.cellPadding * 2
+      LetterGrid.gridWidth + LetterCell.cellPadding * 2,
+      LetterGrid.gridHeight + LetterCell.cellPadding * 2
     );
   }
 }
