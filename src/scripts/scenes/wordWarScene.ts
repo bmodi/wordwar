@@ -11,13 +11,13 @@ export default class WordWarScene extends Phaser.Scene {
   create() {
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
-    const width = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding; // Add padding between cells
-    const height = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding; // Add padding between cells
 
     const letterGrid = new LetterGrid(this);
     letterGrid.create();
 
-    const letterRack = new LetterRack(this, centerX - width / 2, 25, width, LetterCell.cellSize);
+    const letterRack = new LetterRack(
+      this, centerX - LetterGrid.gridWidth / 2, 25,
+      LetterGrid.gridWidth, LetterCell.cellSize);
 
   }
 }
