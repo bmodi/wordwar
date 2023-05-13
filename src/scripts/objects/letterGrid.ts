@@ -1,4 +1,4 @@
-import LetterCell from '../objects/letterCell'
+import LetterCell from '../objects/letterCell';
 
 export default class LetterGrid extends Phaser.GameObjects.Graphics {
 
@@ -10,22 +10,27 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
   }
 
   private getXPosition(col: number): number {
-    return this.getStartX() + LetterCell.borderWidth + col * (LetterCell.cellSize + LetterCell.borderWidth + LetterCell.cellPadding);
+    const { borderWidth, cellSize, cellPadding } = LetterCell;
+    return this.getStartX() + borderWidth + col * (cellSize + borderWidth + cellPadding);
   }
 
   private getYPosition(row: number): number {
-    return this.getStartY() + LetterCell.borderWidth + row * (LetterCell.cellSize + LetterCell.borderWidth + LetterCell.cellPadding);
+    const { borderWidth, cellSize, cellPadding } = LetterCell;
+    return this.getStartY() + borderWidth + row * (cellSize + borderWidth + cellPadding);
   }
 
   private getStartX() {
-    return (this.scene.cameras.main.width - LetterGrid.gridWidth) / 2;
+    const { width } = this.scene.cameras.main;
+    return (width - LetterGrid.gridWidth) / 2;
   }
 
   private getStartY() {
-    return (this.scene.cameras.main.height - LetterGrid.gridHeight) / 2;
+    const { height } = this.scene.cameras.main;
+    return (height - LetterGrid.gridHeight) / 2;
   }
 
   create() {
+    const { cellPadding, borderWidth } = LetterCell;
     // Loop through rows and columns to create the grid
     for (let row = 0; row < 4; row++) {
       for (let col = 0; col < 4; col++) {
@@ -45,10 +50,10 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
     const graphics = this.scene.add.graphics();
     graphics.lineStyle(5, 0xffffff);
     graphics.strokeRect(
-      this.getStartX() - LetterCell.cellPadding / 2 - LetterCell.borderWidth,
-      this.getStartY() - LetterCell.cellPadding / 2 - LetterCell.borderWidth,
-      LetterGrid.gridWidth + LetterCell.cellPadding * 2,
-      LetterGrid.gridHeight + LetterCell.cellPadding * 2
+      this.getStartX() - cellPadding / 2 - borderWidth,
+      this.getStartY() - cellPadding / 2 - borderWidth,
+      LetterGrid.gridWidth + cellPadding * 2,
+      LetterGrid.gridHeight + cellPadding * 2
     );
   }
 }

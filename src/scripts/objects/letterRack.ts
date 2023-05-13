@@ -1,15 +1,18 @@
-import LetterCell from '../objects/letterCell'
+import LetterCell from '../objects/letterCell';
 
 // LetterRack class to represent a row of letter cells
 export default class LetterRack extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, rackXPos: number, rackYPos: number, width: number, height: number) {
     super(scene, rackXPos, rackYPos);
+
+    // Create constants for the cell size and padding
+    const {cellSize, cellPadding, borderWidth} = LetterCell;
     
     // Loop through cells to create the rack
     for (let i = 0; i < 7; i++) {
       // Calculate the position of the letter cell
-      const x = rackXPos + LetterCell.borderWidth + i * (LetterCell.cellSize + LetterCell.cellPadding);
-      const y = rackYPos + LetterCell.borderWidth;
+      const x = rackXPos + borderWidth + i * (cellSize + cellPadding);
+      const y = rackYPos + borderWidth;
 
       const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generate a random char code between 65 (A) and 90 (Z)
       const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
@@ -26,10 +29,9 @@ export default class LetterRack extends Phaser.GameObjects.Container {
     graphics.strokeRect(
       rackXPos,
       rackYPos,
-      width + LetterCell.cellPadding,
-      height + LetterCell.cellPadding
+      width + cellPadding + borderWidth,
+      height + cellPadding + borderWidth
     );
-    
     
   }
 }
