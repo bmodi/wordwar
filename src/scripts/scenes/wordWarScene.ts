@@ -16,8 +16,8 @@ export default class WordWarScene extends Phaser.Scene {
     letterGrid.create();
 
     const letterRack = new LetterRack(
-      this, centerX - LetterGrid.gridWidth / 2, 25,
-      LetterGrid.gridWidth, LetterCell.cellSize);
+      this, centerX - LetterGrid.gridWidth / 2, 25);
 
+    letterRack.create();
   }
 }
