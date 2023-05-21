@@ -2,29 +2,29 @@ import LetterCell from '../objects/letterCell';
 
 export default class LetterGrid extends Phaser.GameObjects.Graphics {
 
-  static gridWidth: number = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
-  static gridHeight: number = 4 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 3 * LetterCell.cellPadding;
+  static gridWidth: number = 4*LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
+  static gridHeight: number = 4*LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
 
   constructor(scene: Phaser.Scene) {
     super(scene);
   }
 
-  private getXPosition(col: number): number {
+  private getCellXPosition(col: number): number {
     const { borderWidth, cellSize, cellPadding } = LetterCell;
-    return this.getStartX() + borderWidth + col * (cellSize + borderWidth + cellPadding);
+    return this.getGridStartX() + borderWidth + cellPadding + col * (cellSize);
   }
 
-  private getYPosition(row: number): number {
+  private getCellYPosition(row: number): number {
     const { borderWidth, cellSize, cellPadding } = LetterCell;
-    return this.getStartY() + borderWidth + row * (cellSize + borderWidth + cellPadding);
+    return this.getGridStartY() + borderWidth + cellPadding + row * (cellSize);
   }
 
-  private getStartX() {
+  private getGridStartX() {
     const { width } = this.scene.cameras.main;
     return (width - LetterGrid.gridWidth) / 2;
   }
 
-  private getStartY() {
+  private getGridStartY() {
     const { height } = this.scene.cameras.main;
     return (height - LetterGrid.gridHeight) / 2;
   }
@@ -35,8 +35,8 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
     for (let row = 0; row < 4; row++) {
       for (let col = 0; col < 4; col++) {
         // Calculate the position of the letter cell
-        const x = this.getXPosition(col);
-        const y = this.getYPosition(row);
+        const x = this.getCellXPosition(col);
+        const y = this.getCellYPosition(row);
 
         const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generate a random char code between 65 (A) and 90 (Z)
         const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
@@ -48,12 +48,12 @@ export default class LetterGrid extends Phaser.GameObjects.Graphics {
 
     // Draw a box around the entire grid
     const graphics = this.scene.add.graphics();
-    graphics.lineStyle(5, 0xffffff);
+    graphics.lineStyle(borderWidth, 0xffffff);
     graphics.strokeRect(
-      this.getStartX() - cellPadding / 2 - borderWidth,
-      this.getStartY() - cellPadding / 2 - borderWidth,
-      LetterGrid.gridWidth + cellPadding * 2,
-      LetterGrid.gridHeight + cellPadding * 2
+      this.getGridStartX()+borderWidth/2,
+      this.getGridStartY()+borderWidth/2,
+      LetterGrid.gridWidth-borderWidth,
+      LetterGrid.gridHeight-borderWidth
     );
   }
 }
