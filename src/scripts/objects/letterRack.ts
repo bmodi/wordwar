@@ -3,8 +3,8 @@ import LetterCell from '../objects/letterCell';
 // LetterRack class to represent a row of letter cells
 export default class LetterRack extends Phaser.GameObjects.Graphics {
 
-  static rackWidth: number = 7 * (LetterCell.cellSize + LetterCell.borderWidth) - LetterCell.borderWidth + 6 * LetterCell.cellPadding;
-  static rackHeight: number = LetterCell.cellSize ;
+  static rackWidth: number = 7*LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
+  static rackHeight: number = LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
 
   rackXPos: number;
   rackYPos: number;
@@ -24,8 +24,8 @@ export default class LetterRack extends Phaser.GameObjects.Graphics {
     // Loop through cells to create the rack
     for (let i = 0; i < 7; i++) {
       // Calculate the position of the letter cell
-      const x = this.rackXPos + borderWidth + i * (cellSize + cellPadding);
-      const y = this.rackYPos + borderWidth;
+      const x = this.rackXPos + borderWidth + cellPadding + i*cellSize ;
+      const y = this.rackYPos + borderWidth + cellPadding;
 
       const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generate a random char code between 65 (A) and 90 (Z)
       const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
@@ -35,15 +35,13 @@ export default class LetterRack extends Phaser.GameObjects.Graphics {
     }
 
     // Draw a box around the entire rack
-    // Draw a box around the entire grid
     const graphics = this.scene.add.graphics();
-    graphics.lineStyle(5, 0xffffff);
+    graphics.lineStyle(borderWidth, 0xffffff);
     graphics.strokeRect(
-      this.rackXPos - cellPadding / 2 - borderWidth,
-      this.rackYPos - cellPadding / 2 - borderWidth,
-      LetterRack.rackWidth + cellPadding,
-      LetterRack.rackHeight + cellPadding * 2
+      this.rackXPos + borderWidth/2,
+      this.rackYPos + borderWidth/2,
+      LetterRack.rackWidth - borderWidth,
+      LetterRack.rackHeight - borderWidth
     );
-    
   }
 }

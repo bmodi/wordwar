@@ -2,8 +2,8 @@
 export default class LetterCell extends Phaser.GameObjects.Graphics {
 
   static cellSize: number = 100;
-  static borderWidth: number = 10;
-  static cellPadding: number = 5;
+  static borderWidth: number = 5;
+  static cellPadding: number = 8;
   
   constructor(scene: Phaser.Scene, x: number, y: number, letter: string) {
     super(scene);
