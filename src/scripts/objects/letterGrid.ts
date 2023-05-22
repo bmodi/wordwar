@@ -1,12 +1,15 @@
 import LetterCell from '../objects/letterCell';
+import WordWarScene from '../scenes/wordWarScene';
 
-export default class LetterGrid extends Phaser.GameObjects.Graphics {
+export default class LetterGrid {
 
   static gridWidth: number = 4*LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
   static gridHeight: number = 4*LetterCell.cellSize + 2*LetterCell.borderWidth + 2*LetterCell.cellPadding;
 
-  constructor(scene: Phaser.Scene) {
-    super(scene);
+  scene: WordWarScene;
+
+  constructor(scene: WordWarScene) {
+    this.scene = scene;
   }
 
   private getCellXPosition(col: number): number {
