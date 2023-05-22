@@ -16,9 +16,6 @@ export default class WordWarScene extends Phaser.Scene {
   }
 
   create() {
-    // const centerX = this.cameras.main.width / 2;
-    // const centerY = this.cameras.main.height / 2;
-
     this.letterGrid.create();
     this.letterRackPlayer.create();
     this.letterRackOpponent.create();

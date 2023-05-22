@@ -15,28 +15,13 @@ export default class LetterRack {
 
   constructor(scene: WordWarScene, position: number) {
     this.scene = scene;
-
     this.position=position;
-    console.log(position);
   }
 
   create() {
 
     // Create constants for the cell size and padding
     const {cellSize, cellPadding, borderWidth} = LetterCell;
-    
-    // // Loop through cells to create the rack
-    // for (let i = 0; i < 7; i++) {
-    //   // Calculate the position of the letter cell
-    //   const x = this.rackXPos + borderWidth + cellPadding + i*cellSize ;
-    //   const y = this.rackYPos + borderWidth + cellPadding;
-
-    //   const randomCharCode = Math.floor(Math.random() * 26) + 65; // Generate a random char code between 65 (A) and 90 (Z)
-    //   const randomLetter = String.fromCharCode(randomCharCode); // Convert the random char code to a letter
-
-    //   // Create a new LetterCell instance
-    //   const letterCell = new LetterCell(this.scene, x, y, randomLetter);
-    // }
     const centerX = this.scene.cameras.main.width / 2;
     const centerY = this.scene.cameras.main.height / 2;
 
